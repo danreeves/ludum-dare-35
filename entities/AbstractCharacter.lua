@@ -1,11 +1,13 @@
+local either = require('lib.either')
 local AbstractCharacter = {
     x = 0,
     y = 0,
     xvel = 0,
     yvel = 0,
-    speed = 3,
-    max_speed = 4,
-    drag = 1,
+    default_str = 0,
+    default_accel = 3,
+    default_max_speed = 5,
+    default_drag = 1,
     head = {},
     torso = {},
     legs = {},
@@ -21,6 +23,22 @@ function AbstractCharacter:new()
     self.__index = self
 
     return new
+end
+
+function AbstractCharacter:getAccel()
+    return either(self.legs.accel, self.default_accel)
+end
+
+function AbstractCharacter:getStr()
+    return either(self.torso.str, self.default_str)
+end
+
+function AbstractCharacter:getMaxSpeed()
+    return either(self.legs.max_speed, self.default_max_speed)
+end
+
+function AbstractCharacter:getDrag()
+    return either(self.torso.drag, self.default_drag)
 end
 
 return AbstractCharacter

@@ -7,7 +7,8 @@ function Level1:init()
     -- self.map = sti.new(self.mappath)
     local world = tiny.world(
         require('systems.PlayerMovement'),
-        require('systems.SpriteDraw')
+        require('systems.SpriteDraw'),
+        require('systems.CharacterDraw')
     )
     world:addEntity(require('entities.Player'):new())
 
