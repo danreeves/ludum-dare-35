@@ -12,7 +12,6 @@ function hit:tile(x, y)
     local tx, ty = self.map:convertScreenToWorld(x, y)
     tx = math.ceil(tx)
     ty = math.ceil(ty)
-    print(tx, ty)
     local layer = self.map.layers[self.layer]
     local row = (layer ~= nil) and layer.data[ty] or nil
     local tile = (row ~= nil) and row[tx] or nil

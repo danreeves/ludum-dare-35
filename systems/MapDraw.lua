@@ -11,7 +11,7 @@ function MapDraw:new(map)
 end
 
 function MapDraw:update(dt)
-    self.map:draw()
+    self.map:drawLayer(self.map.layers['Walls'])
 end
 
 return MapDraw
