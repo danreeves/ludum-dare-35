@@ -1,7 +1,16 @@
+local Hit = require('lib.hit')
 local PlayerMovement = tiny.processingSystem()
 
 PlayerMovement.isUpdate = true
 PlayerMovement.filter = tiny.requireAll('is_player', 'x', 'y')
+
+function PlayerMovement:new(map)
+    local new = {}
+    setmetatable(new, self)
+    self.__index = self
+    new.map = map
+    return new
+end
 
 function PlayerMovement:process(e, dt)
 
@@ -50,6 +59,23 @@ function PlayerMovement:process(e, dt)
             yvel = yvel + accel
         end
 
+    end
+
+    local hit = Hit:init(self.map, 'Walls')
+
+    if hit:tile(e.x, e.y) then
+        for i = 0, xvel do
+            if hit:tile(e.x + i, e.y) then
+                xvel = 0
+                e.x = e.x + i - 1
+            end
+        end
+        for i = 0, yvel do
+            if hit:tile(e.x, e.y + i) then
+                yvel = 0
+                e.x = e.x + i - 1
+            end
+        end
     end
 
     e.xvel = xvel

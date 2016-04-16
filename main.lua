@@ -12,6 +12,9 @@ end
 
 local drawSystems = function(_, s) return not s.isUpdate end
 local updateSystems = function(_, s) return not s.isDraw end
+function cameraDraw()
+    return _G.world:update(dt, drawSystems)
+end
 
 function love.update()
     if _G.world then
@@ -22,6 +25,8 @@ end
 function love.draw()
     local dt = love.timer.getDelta()
     if _G.world then
-        _G.world:update(dt, drawSystems)
+        if _G.camera then
+            _G.camera:draw(cameraDraw)
+        end
     end
 end

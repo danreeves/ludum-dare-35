@@ -1,17 +1,23 @@
+local Camera = require('lib.hump.camera')
 local sti = require('lib.sti')
 local Level1 = {
   mappath = 'assets/maps/level1.lua'
 }
 
 function Level1:init()
-    -- self.map = sti.new(self.mappath)
+    local map = sti.new('assets/maps/map1.lua')
     local world = tiny.world(
-        require('systems.PlayerMovement'),
+        require('systems.MapUpdate'):new(map),
+        require('systems.MapDraw'):new(map),
+        require('systems.PlayerMovement'):new(map),
         require('systems.SpriteDraw'),
-        require('systems.CharacterDraw')
+        require('systems.CharacterDraw'),
+        require('systems.CameraTracking')
     )
     world:addEntity(require('entities.Player'):new())
 
+    _G.camera = Camera(0, 0, 4)
+    _G.map = map
     _G.world = world
 end
 
