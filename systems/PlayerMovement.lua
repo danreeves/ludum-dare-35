@@ -9,6 +9,7 @@ function PlayerMovement:process(e, dt)
     local yvel = e.yvel
     local speed = e.speed
     local drag = e.drag
+    local max_speed = e.max_speed
 
     if xvel < 0 then
         xvel = xvel + drag
@@ -27,20 +28,28 @@ function PlayerMovement:process(e, dt)
         if yvel < 0 then yvel = 0 end
     end
 
-    if love.keyboard.isDown('left') then
-        xvel = xvel - speed
+    if math.abs(xvel) < max_speed then
+
+        if love.keyboard.isDown('left') then
+            xvel = xvel - speed
+        end
+
+        if love.keyboard.isDown('right') then
+            xvel = xvel + speed
+        end
+
     end
 
-    if love.keyboard.isDown('right') then
-        xvel = xvel + speed
-    end
+    if math.abs(yvel) < max_speed then
 
-    if love.keyboard.isDown('up') then
-        yvel = yvel - speed
-    end
+        if love.keyboard.isDown('up') then
+            yvel = yvel - speed
+        end
 
-    if love.keyboard.isDown('down') then
-        yvel = yvel + speed
+        if love.keyboard.isDown('down') then
+            yvel = yvel + speed
+        end
+
     end
 
     e.xvel = xvel
