@@ -22,7 +22,7 @@ function Level1:init()
             seconds = 1
         },
         {
-            direction = 'up',
+            direction = '',
             seconds = 1
         },
         {
@@ -30,7 +30,7 @@ function Level1:init()
             seconds = 1
         },
         {
-            direction = 'down',
+            direction = '',
             seconds = 1
         },
     }))

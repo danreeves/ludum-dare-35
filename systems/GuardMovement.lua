@@ -103,7 +103,7 @@ function GuardMovement:process(e, dt)
         e.legs.sprite = (e.ud == 'up') and e.legs.animations.idle_up or e.legs.animations.idle_down
     end
 
-    if love.keyboard.isDown('up', 'down', 'left', 'right') then
+    if move_left or move_right or move_up or move_down then
         e.head.sprite = (oldy > e.y) and e.head.animations.walk_up or e.head.animations.walk_down
         e.torso.sprite = (oldy > e.y) and e.torso.animations.walk_up or e.torso.animations.walk_down
         e.legs.sprite = (oldy > e.y) and e.legs.animations.walk_up or e.legs.animations.walk_down

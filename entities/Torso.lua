@@ -20,11 +20,11 @@ function Torso:new(sprite_path, str, drag)
 
     new.animations = {
         idle_up    = anim8.newAnimation(new.grids.idle_up('1-2', 1), 0.5),
-        walk_up    = anim8.newAnimation(new.grids.walk_up('1-2', 1), 0.5),
+        walk_up    = anim8.newAnimation(new.grids.walk_up('1-2', 1), 0.35),
         punch_up   = anim8.newAnimation(new.grids.punch_up('1-2', 1), 0.5),
 
         idle_down  = anim8.newAnimation(new.grids.idle_down('1-2', 1), 0.5),
-        walk_down  = anim8.newAnimation(new.grids.walk_down('1-2', 1), 0.5),
+        walk_down  = anim8.newAnimation(new.grids.walk_down('1-2', 1), 0.35),
         punch_down = anim8.newAnimation(new.grids.punch_down('1-2', 1), 0.5),
     }
 
