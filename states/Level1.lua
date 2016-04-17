@@ -8,10 +8,10 @@ function Level1:init()
     local map = sti.new('assets/maps/map1.lua')
     local world = tiny.world(unpack({
         require('systems.MapUpdate'):new(map),
+        require('systems.MapDraw'):new(map),
         require('systems.PlayerMovement'):new(map),
         require('systems.SpriteDraw'),
         require('systems.CharacterDraw'),
-        require('systems.MapDraw'):new(map),
         require('systems.CameraTracking'),
     }))
     world:addEntity(require('entities.Player'):new())

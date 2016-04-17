@@ -16,7 +16,9 @@ local AbstractCharacter = {
     transformation_timer = 0,
     visible = true,
     lr = 'right',
-    ud = 'down'
+    ud = 'down',
+    height = 40,
+    width = 26
 }
 
 function AbstractCharacter:new()

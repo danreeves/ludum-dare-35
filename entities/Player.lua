@@ -11,13 +11,13 @@ function Player:new()
     new.is_player = true
     new.spritesheet = love.graphics.newImage('assets/sprites/wizard.png')
     new.grids = {
-        idle_up    = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 0, 0),
-        walk_up    = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*1, 0),
-        punch_up   = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*2, 0),
-        idle_down  = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*3, 0),
-        walk_down  = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*4, 0),
-        punch_down = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*5, 0),
-        transform  = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*6, 0),
+        idle_up    = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 0, 0),
+        walk_up    = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*1, 0),
+        punch_up   = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*2, 0),
+        idle_down  = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*3, 0),
+        walk_down  = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*4, 0),
+        punch_down = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*5, 0),
+        transform  = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*6, 0),
 
     }
     new.animations = {
