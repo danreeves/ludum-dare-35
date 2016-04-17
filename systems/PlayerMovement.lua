@@ -62,9 +62,9 @@ function PlayerMovement:process(e, dt)
     end
 
     local hit = Hit:init(self.map, 'Walls')
-
-    local nextx = (xvel < 0) and -1 or e.torso.sprite:getWidth() + 1
-    local nexty = (yvel < 0) and -e.torso.sprite:getHeight() - 1 or e.torso.sprite:getHeight()
+    -- 26 is sprite width
+    local nextx = (xvel < 0) and -1 or 26 + 1
+    local nexty = (yvel < 0) and -26 - 1 or 26
 
     if hit:tile(e.x + nextx, e.y) then
         xvel = 0
