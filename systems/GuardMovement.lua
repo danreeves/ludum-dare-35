@@ -14,6 +14,7 @@ end
 
 function GuardMovement:process(e, dt)
 
+    e.path:update(dt)
     local oldx = e.x
     local oldy = e.y
     local xvel = e.xvel
@@ -21,10 +22,11 @@ function GuardMovement:process(e, dt)
     local accel = e:getAccel()
     local drag = e:getDrag()
     local max_speed = e:getMaxSpeed()
-    local move_left = math.random() > 0.5
-    local move_right = math.random() > 0.5
-    local move_up = math.random() > 0.5
-    local move_down = math.random() > 0.5
+    local path_dir = e.path:getDirection()
+    local move_left = path_dir == 'left'
+    local move_right = path_dir == 'right'
+    local move_up = path_dir == 'up'
+    local move_down = path_dir == 'down'
 
     if xvel < 0 then
         xvel = xvel + drag

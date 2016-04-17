@@ -13,10 +13,11 @@ end
 local drawSystems = function(_, s) return not s.isUpdate end
 local updateSystems = function(_, s) return not s.isDraw end
 function cameraDraw()
+    local dt = love.timer.getDelta()
     return _G.world:update(dt, drawSystems)
 end
 
-function love.update()
+function love.update(dt)
     if _G.world then
         _G.world:update(dt, updateSystems)
     end

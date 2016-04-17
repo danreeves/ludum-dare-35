@@ -16,7 +16,24 @@ function Level1:init()
         require('systems.CameraTracking'),
     }))
     world:addEntity(require('entities.Player'):new())
-    world:addEntity(require('entities.Guard'):new('assets/sprites/elf-1.png'))
+    world:addEntity(require('entities.Guard'):new('assets/sprites/elf-1.png', {
+        {
+            direction = 'left',
+            seconds = 1
+        },
+        {
+            direction = 'up',
+            seconds = 1
+        },
+        {
+            direction = 'right',
+            seconds = 1
+        },
+        {
+            direction = 'down',
+            seconds = 1
+        },
+    }))
 
     _G.camera = Camera(0, 0, 4)
     _G.map = map
