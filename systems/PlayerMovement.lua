@@ -63,11 +63,13 @@ function PlayerMovement:process(e, dt)
 
     local hit = Hit:init(self.map, 'Walls')
 
-    local nextx = (xvel < 0) and 0 or e.torso.sprite:getWidth()
-    local nexty = (yvel < 0) and 0 or e.torso.sprite:getHeight()
+    local nextx = (xvel < 0) and -1 or e.torso.sprite:getWidth() + 1
+    local nexty = (yvel < 0) and -e.torso.sprite:getHeight() - 1 or e.torso.sprite:getHeight()
 
-    if hit:tile(e.x + nextx, e.y + nexty) then
+    if hit:tile(e.x + nextx, e.y) then
         xvel = 0
+    end
+    if hit:tile(e.x, e.y + nexty) then
         yvel = 0
     end
 
