@@ -1,10 +1,10 @@
 local Hit = require('lib.hit')
-local PlayerMovement = tiny.processingSystem()
+local GuardMovement = tiny.processingSystem()
 
-PlayerMovement.isUpdate = true
-PlayerMovement.filter = tiny.requireAll('is_player', 'x', 'y')
+GuardMovement.isUpdate = true
+GuardMovement.filter = tiny.requireAll('is_guard', 'x', 'y')
 
-function PlayerMovement:new(map)
+function GuardMovement:new(map)
     local new = {}
     setmetatable(new, self)
     self.__index = self
@@ -12,7 +12,7 @@ function PlayerMovement:new(map)
     return new
 end
 
-function PlayerMovement:process(e, dt)
+function GuardMovement:process(e, dt)
 
     local oldx = e.x
     local oldy = e.y
@@ -21,6 +21,10 @@ function PlayerMovement:process(e, dt)
     local accel = e:getAccel()
     local drag = e:getDrag()
     local max_speed = e:getMaxSpeed()
+    local move_left = math.random() > 0.5
+    local move_right = math.random() > 0.5
+    local move_up = math.random() > 0.5
+    local move_down = math.random() > 0.5
 
     if xvel < 0 then
         xvel = xvel + drag
@@ -41,11 +45,11 @@ function PlayerMovement:process(e, dt)
 
     if math.abs(xvel) < max_speed then
 
-        if love.keyboard.isDown('left') then
+        if move_left then
             xvel = xvel - accel
         end
 
-        if love.keyboard.isDown('right') then
+        if move_right then
             xvel = xvel + accel
         end
 
@@ -53,11 +57,11 @@ function PlayerMovement:process(e, dt)
 
     if math.abs(yvel) < max_speed then
 
-        if love.keyboard.isDown('up') then
+        if move_up then
             yvel = yvel - accel
         end
 
-        if love.keyboard.isDown('down') then
+        if move_down then
             yvel = yvel + accel
         end
 
@@ -85,20 +89,24 @@ function PlayerMovement:process(e, dt)
     e.x = e.x + e.xvel
     e.y = e.y + e.yvel
 
-    if love.keyboard.isDown('left') or love.keyboard.isDown('right') then
+    if move_left or move_right then
         e.lr = (oldx > e.x) and 'left' or 'right'
     end
-    if love.keyboard.isDown('up') or love.keyboard.isDown('down') then
+    if move_up or move_down then
         e.ud = (oldy > e.y) and 'up' or 'down'
     end
     if e.x == oldx and e.y == oldy then
-        e.sprite = (e.ud == 'up') and e.animations.idle_up or e.animations.idle_down
+        e.head.sprite = (e.ud == 'up') and e.head.animations.idle_up or e.head.animations.idle_down
+        e.torso.sprite = (e.ud == 'up') and e.torso.animations.idle_up or e.torso.animations.idle_down
+        e.legs.sprite = (e.ud == 'up') and e.legs.animations.idle_up or e.legs.animations.idle_down
     end
 
     if love.keyboard.isDown('up', 'down', 'left', 'right') then
-        e.sprite = (oldy > e.y) and e.animations.walk_up or e.animations.walk_down
+        e.head.sprite = (oldy > e.y) and e.head.animations.walk_up or e.head.animations.walk_down
+        e.torso.sprite = (oldy > e.y) and e.torso.animations.walk_up or e.torso.animations.walk_down
+        e.legs.sprite = (oldy > e.y) and e.legs.animations.walk_up or e.legs.animations.walk_down
     end
 
 end
 
-return PlayerMovement
+return GuardMovement

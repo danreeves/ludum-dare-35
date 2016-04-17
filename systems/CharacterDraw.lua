@@ -9,12 +9,14 @@ function SpriteDraw:process(e, dt)
         e.sprite:update(dt)
         local sx = (e.lr == 'right') and 1 or -1
         e.sprite:draw(e.spritesheet, e.x, e.y, 0, sx, 1, e.width/2, e.height/2)
-        love.graphics.setColor(255, 0, 0)
-        love.graphics.circle("fill", e.x, e.y, 5, 100)   -- Draw red circle with five segments.
     else
-        love.graphics.draw(e.head.sprite, e.x, e.y - (e.torso.sprite:getHeight() / 2) - (e.head.sprite:getHeight() / 2) )
-        love.graphics.draw(e.torso.sprite, e.x, e.y)
-        love.graphics.draw(e.legs.sprite, e.x, e.y + (e.torso.sprite:getHeight() / 2) + (e.legs.sprite:getHeight() / 2))
+        e.legs.sprite:update(dt)
+        e.torso.sprite:update(dt)
+        e.head.sprite:update(dt)
+
+        e.legs.sprite:draw(e.spritesheet, e.x, e.y, 0, sx, 1, e.width/2, e.height/2)
+        e.torso.sprite:draw(e.spritesheet, e.x, e.y, 0, sx, 1, e.width/2, e.height/2)
+        e.head.sprite:draw(e.spritesheet, e.x, e.y, 0, sx, 1, e.width/2, e.height/2)
     end
 end
 
