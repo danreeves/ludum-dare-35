@@ -7,7 +7,8 @@ function SpriteDraw:process(e, dt)
     local dt = love.timer.getDelta()
     if e.is_player and e.sprite ~= nil then
         e.sprite:update(dt)
-        e.sprite:draw(e.spritesheet, e.x, e.y)
+        local sx = (e.lr == 'right') and 1 or -1
+        e.sprite:draw(e.spritesheet, e.x, e.y, 0, sx, 1, 26/2)
     else
         love.graphics.draw(e.head.sprite, e.x, e.y - (e.torso.sprite:getHeight() / 2) - (e.head.sprite:getHeight() / 2) )
         love.graphics.draw(e.torso.sprite, e.x, e.y)

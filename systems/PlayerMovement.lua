@@ -14,6 +14,8 @@ end
 
 function PlayerMovement:process(e, dt)
 
+    local oldx = e.x
+    local oldy = e.y
     local xvel = e.xvel
     local yvel = e.yvel
     local accel = e:getAccel()
@@ -64,7 +66,7 @@ function PlayerMovement:process(e, dt)
     local hit = Hit:init(self.map, 'Walls')
     -- 26 is sprite width
     local nextx = (xvel < 0) and -1 or 26 + 1
-    local nexty = (yvel < 0) and -26 - 1 or 26
+    local nexty = (yvel < 0) and -46 - 1 or 46
 
     if hit:tile(e.x + nextx, e.y) then
         xvel = 0
@@ -75,9 +77,22 @@ function PlayerMovement:process(e, dt)
 
     e.xvel = xvel
     e.yvel = yvel
-
     e.x = e.x + e.xvel
     e.y = e.y + e.yvel
+
+    if love.keyboard.isDown('left') or love.keyboard.isDown('right') then
+        e.lr = (oldx > e.x) and 'left' or 'right'
+    end
+    if love.keyboard.isDown('up') or love.keyboard.isDown('down') then
+        e.ud = (oldy > e.y) and 'up' or 'down'
+    end
+    if e.x == oldx and e.y == oldy then
+        e.sprite = (e.ud == 'up') and e.animations.idle_up or e.animations.idle_down
+    end
+
+    if love.keyboard.isDown('up', 'down', 'left', 'right') then
+        e.sprite = (oldy > e.y) and e.animations.walk_up or e.animations.walk_down
+    end
 
 end
 

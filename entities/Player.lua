@@ -9,18 +9,27 @@ function Player:new()
     local new = AbstractCharacter:new()
 
     new.is_player = true
-    new.spritesheet = love.graphics.newImage('assets/sprites/back-wizard.png')
+    new.spritesheet = love.graphics.newImage('assets/sprites/wizard.png')
     new.grids = {
-        transform_up = anim8.newGrid(26, 46, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 0, 0),
-        idle_up = anim8.newGrid(26, 46, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 46, 0),
-        punch_up = anim8.newGrid(26, 46, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 46*2, 0)
+        idle_up    = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 0, 0),
+        walk_up    = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*1, 0),
+        punch_up   = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*2, 0),
+        idle_down  = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*3, 0),
+        walk_down  = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*4, 0),
+        punch_down = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*5, 0),
+        transform  = anim8.newGrid(26, 40, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*6, 0),
+
     }
     new.animations = {
-        transform_up = anim8.newAnimation(new.grids.transform_up('1-2', 1), 0.1),
-        idle_up = anim8.newAnimation(new.grids.idle_up('1-2', 1), 2),
-        punch_up = anim8.newAnimation(new.grids.punch_up('1-2', 1), 2)
+        idle_up    = anim8.newAnimation(new.grids.idle_up(1,1, 2,1, 1,1), {1, 0.5, 1}),
+        walk_up    = anim8.newAnimation(new.grids.walk_up('1-2',   1), 0.5),
+        punch_up   = anim8.newAnimation(new.grids.punch_up('1-2',  1),   2),
+        idle_down  = anim8.newAnimation(new.grids.idle_down(1,1, 2,1, 1,1), {1, 0.5, 1}),
+        walk_down  = anim8.newAnimation(new.grids.walk_down('1-2', 1), 0.5),
+        punch_down = anim8.newAnimation(new.grids.punch_up('1-2',  1),   2),
+        transform  = anim8.newAnimation(new.grids.transform('1-2', 1),   1),
     }
-    new.sprite = new.animations.punch_up
+    new.sprite = new.animations.idle_down
 
     return new
 end
