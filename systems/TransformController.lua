@@ -20,6 +20,8 @@ function TransformController:process(e, dt)
 
     if e.transform then
 
+        e.transform = false
+
         e.head = random:head()
         e.torso = random:torso()
         e.legs = random:legs()
