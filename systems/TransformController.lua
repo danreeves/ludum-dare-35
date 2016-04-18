@@ -21,6 +21,7 @@ function TransformController:process(e, dt)
     if e.transform then
 
         e.transform = false
+        e.has_transformed = true
 
         e.head = random:head()
         e.torso = random:torso()
@@ -33,7 +34,7 @@ function TransformController:process(e, dt)
     end
 
     if e.has_transformed then
-        -- do the timer stuff
+
     end
 
 end

@@ -5,6 +5,7 @@ local Level1 = require('states.Level1')
 
 function love.load()
     if arg[#arg] == "-debug" then require('mobdebug').start() end
+    math.randomseed(os.time())
     love.graphics.setDefaultFilter('nearest', 'nearest')
     gamestate.registerEvents()
     gamestate.switch(Level1)
@@ -35,7 +36,6 @@ end
 function love.keypressed(key)
     if _G.player ~= nil then
         if key == 'x' and _G.player.mp > 0 then
-            print('transforming')
             _G.player.transform = true
             _G.player.mp = _G.player.mp - 1
         end
