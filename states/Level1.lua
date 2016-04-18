@@ -35,7 +35,7 @@ function Level1:init()
         },
     }))
 
-    _G.camera = Camera(0, 0, 4)
+    _G.camera = Camera(0, 0, 3)
     _G.map = map
     _G.world = world
 end
