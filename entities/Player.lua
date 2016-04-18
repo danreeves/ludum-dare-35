@@ -11,6 +11,8 @@ function Player:new()
     new.is_player = true
     new.mp = 10
     new.hp = 10
+    new.transform_at = 5
+
     new.spritesheet = love.graphics.newImage('assets/sprites/wizard.png')
     new.w_grids = {
         idle_up    = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 0, 0),

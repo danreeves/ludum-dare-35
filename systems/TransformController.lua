@@ -33,7 +33,13 @@ function TransformController:process(e, dt)
 
     end
 
-    if e.has_transformed then
+    if e.has_transformed and e.transform_at ~= false then
+
+        e.transformation_timer = e.transformation_timer + dt
+        if e.transformation_timer > e.transform_at then
+            e.transformation_timer = 0
+            e.transform = true
+        end
 
     end
 
