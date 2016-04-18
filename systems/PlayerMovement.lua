@@ -70,14 +70,14 @@ function PlayerMovement:process(e, dt)
     local nexty = (yvel < 0) and -e.height/5 or e.height/2
 
     if  hit:tile(e.x + nextx + xvel, e.y) or
-        hit:tile(e.x + nextx + xvel, e.y + e.height/2) or
-        hit:tile(e.x + nextx + xvel, e.y - e.height/2) then
+        hit:tile(e.x + nextx + xvel, e.y + e.height/3) or
+        hit:tile(e.x + nextx + xvel, e.y - e.height/3) then
             xvel = 0
     end
 
     if  hit:tile(e.x,             e.y + nexty + yvel) or
-        hit:tile(e.x + e.width/2, e.y + nexty + yvel) or
-        hit:tile(e.x - e.width/2, e.y + nexty + yvel) then
+        hit:tile(e.x + e.width/3, e.y + nexty + yvel) or
+        hit:tile(e.x - e.width/3, e.y + nexty + yvel) then
         yvel = 0
     end
 
