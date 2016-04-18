@@ -92,11 +92,11 @@ function PlayerMovement:process(e, dt)
         e.ud = (oldy > e.y) and 'up' or 'down'
     end
     if e.x == oldx and e.y == oldy then
-        e.sprite = (e.ud == 'up') and e.animations.idle_up or e.animations.idle_down
+        e.w_sprite = (e.ud == 'up') and e.w_animations.idle_up or e.w_animations.idle_down
     end
 
     if love.keyboard.isDown('up', 'down', 'left', 'right') then
-        e.sprite = (oldy > e.y) and e.animations.walk_up or e.animations.walk_down
+        e.w_sprite = (oldy > e.y) and e.w_animations.walk_up or e.w_animations.walk_down
     end
 
 end

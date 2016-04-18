@@ -1,7 +1,7 @@
 local either = require('lib.either')
 local AbstractCharacter = {
-    x = 0,
-    y = 0,
+    x = 550,
+    y = 550,
     xvel = 0,
     yvel = 0,
     default_str = 0,
