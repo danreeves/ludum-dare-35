@@ -1,4 +1,5 @@
 local Hit = require('lib.hit')
+local allOf = require('lib.allOf')
 local PlayerMovement = tiny.processingSystem()
 
 PlayerMovement.isUpdate = true
@@ -92,11 +93,25 @@ function PlayerMovement:process(e, dt)
         e.ud = (oldy > e.y) and 'up' or 'down'
     end
     if e.x == oldx and e.y == oldy then
-        e.w_sprite = (e.ud == 'up') and e.w_animations.idle_up or e.w_animations.idle_down
+        if e.w_sprite then
+            e.w_sprite = (e.ud == 'up') and e.w_animations.idle_up or e.w_animations.idle_down
+        end
+        if allOf(e.head, e.torso, e.legs) then
+            e.head.sprite = (e.ud == 'up') and e.head.animations.idle_up or e.head.animations.idle_down
+            e.torso.sprite = (e.ud == 'up') and e.torso.animations.idle_up or e.torso.animations.idle_down
+            e.legs.sprite = (e.ud == 'up') and e.legs.animations.idle_up or e.legs.animations.idle_down
+        end
     end
 
     if love.keyboard.isDown('up', 'down', 'left', 'right') then
-        e.w_sprite = (oldy > e.y) and e.w_animations.walk_up or e.w_animations.walk_down
+        if e.w_sprite then
+            e.w_sprite = (oldy > e.y) and e.w_animations.walk_up or e.w_animations.walk_down
+        end
+        if allOf(e.head, e.torso, e.legs) then
+            e.head.sprite = (oldy > e.y) and e.head.animations.walk_up or e.head.animations.walk_down
+            e.torso.sprite = (oldy > e.y) and e.torso.animations.walk_up or e.torso.animations.walk_down
+            e.legs.sprite = (oldy > e.y) and e.legs.animations.walk_up or e.legs.animations.walk_down
+        end
     end
 
 end

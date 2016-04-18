@@ -31,3 +31,13 @@ function love.draw()
         end
     end
 end
+
+function love.keypressed(key)
+    if _G.player ~= nil then
+        if key == 'x' and _G.player.mp > 0 then
+            print('transforming')
+            _G.player.transform = true
+            _G.player.mp = _G.player.mp - 1
+        end
+    end
+end
