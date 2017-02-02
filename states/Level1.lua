@@ -12,6 +12,7 @@ function Level1:init()
         require('systems.MapDraw'):new(map),
         require('systems.PlayerMovement'):new(map),
         require('systems.GuardMovement'):new(map),
+        require('systems.Comparison'):new(player),
         require('systems.TransformController'),
         require('systems.SpriteDraw'),
         require('systems.CharacterDraw'),

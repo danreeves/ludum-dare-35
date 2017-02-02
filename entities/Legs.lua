@@ -2,8 +2,8 @@ local anim8 = require('lib.anim8')
 local AbstractPart = require('entities.AbstractPart')
 local Legs = {}
 
-function Legs:new(sprite_path, max_speed, accel)
-    local new = AbstractPart:new(sprite_path)
+function Legs:new(sprite_path, id, max_speed, accel)
+    local new = AbstractPart:new(sprite_path, id)
 
     new.max_speed = max_speed or nil
     new.accel = accel or nil

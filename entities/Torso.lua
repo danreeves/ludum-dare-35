@@ -2,8 +2,8 @@ local anim8 = require('lib.anim8')
 local AbstractPart = require('entities.AbstractPart')
 local Torso = {}
 
-function Torso:new(sprite_path, str, drag)
-    local new = AbstractPart:new(sprite_path)
+function Torso:new(sprite_path, id, str, drag)
+    local new = AbstractPart:new(sprite_path, id)
 
     new.str = str or nil
     new.drag = drag or nil

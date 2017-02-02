@@ -10,9 +10,9 @@ function Guard:new(sprite_sheet, pathArr)
     local new = AbstractCharacter:new()
 
     new.is_guard = true
-    new.head = Head:new(sprite_sheet)
-    new.torso = Torso:new(sprite_sheet)
-    new.legs = Legs:new(sprite_sheet)
+    new.head = Head:new(sprite_sheet, 1)
+    new.torso = Torso:new(sprite_sheet, 1)
+    new.legs = Legs:new(sprite_sheet, 1)
     new.spritesheet = love.graphics.newImage(sprite_sheet)
 
     new.path = Path:new(pathArr) or nil

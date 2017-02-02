@@ -2,8 +2,8 @@ local anim8 = require('lib.anim8')
 local AbstractPart = require('entities.AbstractPart')
 local Head = {}
 
-function Head:new(sprite_path)
-    local new = AbstractPart:new(sprite_path)
+function Head:new(sprite_path, id)
+    local new = AbstractPart:new(sprite_path, id)
 
     new.grids = {
         idle_up    = anim8.newGrid(26, 42, new.spritesheet:getWidth(), new.spritesheet:getHeight(), 0, 42*1, 0),
